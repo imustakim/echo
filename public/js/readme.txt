@@ -1,0 +1,1 @@
+js file resides in this directory
