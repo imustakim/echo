@@ -1,0 +1,1 @@
+model - this is for all app’s Model classes

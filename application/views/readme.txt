@@ -1,0 +1,1 @@
+view - this is for all app’s View classes
