@@ -6,7 +6,7 @@ use Core\Http\Router;
 use Core\Error\ErrorHandler;
 use Core\Database\Database;
 
-// load composer autoloader
+// Load composer autoloader
 require "../vendor/autoload.php";
 
 // Load environment variables
