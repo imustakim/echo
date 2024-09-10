@@ -1,1 +1,0 @@
-other uploads will reside in this directory

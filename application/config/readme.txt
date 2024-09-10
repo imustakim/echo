@@ -1,1 +1,0 @@
-config - stores the app’s configuration files

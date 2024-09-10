@@ -1,1 +1,0 @@
-libraries - for class libraries

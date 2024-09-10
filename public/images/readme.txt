@@ -1,1 +1,0 @@
-images resides in this directory
