@@ -1,0 +1,21 @@
+{
+    "name": "echo",
+    "version": "1.0.0",
+    "scripts": {
+        "build:css": "tailwindcss -i ./src/css/input.css -o ./public/assets/css/style.css --minify",
+        "watch:css": "tailwindcss -i ./src/css/input.css -o ./public/assets/css/style.css --watch",
+        "build:js": "webpack --config webpack.config.js",
+        "build": "npm run build:css && npm run build:js",
+        "watch": "npm run watch:css && npm run build:js"
+    },
+    "devDependencies": {
+        "tailwindcss": "^3.0.0",
+        "postcss": "^8.0.0",
+        "autoprefixer": "^10.0.0",
+        "webpack": "^5.0.0",
+        "webpack-cli": "^4.0.0"
+    },
+    "dependencies": {
+        "jquery": "^3.6.0"
+    }
+}
