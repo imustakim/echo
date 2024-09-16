@@ -6,9 +6,9 @@
     <title><?= htmlspecialchars($title) ?></title>
     <link href="/public/assets/css/style.css" rel="stylesheet">
 </head>
-<body>
+<body class="bg-gray-100 font-sans leading-normal tracking-normal">
     <?php include __DIR__ . '/../partials/header.php'; ?>
-    <main class="container">
+    <main class="container mx-auto px-4 py-8">
         <?= $content ?>
     </main>
     <?php include __DIR__ . '/../partials/footer.php'; ?>
