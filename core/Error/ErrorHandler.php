@@ -52,7 +52,7 @@ class ErrorHandler {
                 'file' => $file,
                 'line' => $line,
                 'severity' => $severity,
-                'trace' => (new Exception())->getTraceAsString(),
+                'trace' => (new \Exception())->getTraceAsString(),
             ]);
 
             // Convert to an ErrorException to trigger the exception handler
