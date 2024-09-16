@@ -36,7 +36,7 @@ class Database {
     private static function getDatabaseConfig(): array {
         $requiredEnvVars = [
             'DB_DRIVER', 'DB_HOST', 'DB_DATABASE', 'DB_USERNAME', 
-            'DB_PASSWORD', 'DB_CHARSET', 'DB_COLLATION', 'DB_PREFIX'
+            'DB_PASSWORD', 'DB_CHARSET', 'DB_COLLATION'
         ];
 
         foreach ($requiredEnvVars as $var) {
@@ -52,8 +52,7 @@ class Database {
             'username'  => $_ENV['DB_USERNAME'],
             'password'  => $_ENV['DB_PASSWORD'],
             'charset'   => $_ENV['DB_CHARSET'],
-            'collation' => $_ENV['DB_COLLATION'],
-            'prefix'    => $_ENV['DB_PREFIX'],
+            'collation' => $_ENV['DB_COLLATION']
         ];
     }
 }
