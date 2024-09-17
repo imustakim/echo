@@ -1,4 +1,6 @@
 {
+    "name": "imustakim/echo",
+    "description": "A lightweight PHP framework",
     "require": {
         "php": "^8.0",
         "illuminate/database": "^9.0",
