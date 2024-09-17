@@ -1,6 +1,7 @@
 {
     "name": "imustakim/echo",
     "description": "A lightweight PHP framework",
+    "license": "MIT",
     "require": {
         "php": "^8.0",
         "illuminate/database": "^9.0",
