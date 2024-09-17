@@ -23,7 +23,7 @@ class ErrorHandler {
         ini_set('display_errors', '0');  // Ensure errors are not displayed on the screen in production
 
         $log = new Logger('app');
-        $log->pushHandler(new StreamHandler(__DIR__ . '/../Logs/app.log', Logger::ERROR));
+        $log->pushHandler(new StreamHandler(__DIR__ . '/../../logs/app.log', Logger::ERROR));
 
         set_exception_handler(function($exception) use ($log) {
             // Log full stack trace
