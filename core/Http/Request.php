@@ -5,6 +5,12 @@ namespace Core\Http;
 use Symfony\Component\HttpFoundation\Request as SymfonyRequest;
 
 class Request extends SymfonyRequest {
+
+    /**
+     * Create a new request instance from the PHP superglobals.
+     *
+     * @return static
+     */
     public static function createFromGlobals(): static {
         return new static(
             $_GET,
