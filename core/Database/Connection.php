@@ -5,7 +5,7 @@ namespace Core\Database;
 use Illuminate\Database\Capsule\Manager as Capsule;
 use Exception;
 
-class Database {
+class Connection {
 
     /**
      * Initialize the database connection.
