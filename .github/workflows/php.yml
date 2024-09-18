@@ -1,9 +1,7 @@
-name: PHP Composer
+name: Workflow PHP CI
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
     branches: [ "main" ]
 
 permissions:
