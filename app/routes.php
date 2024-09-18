@@ -1,10 +1,7 @@
 <?php
 
-use App\Controllers\HomeController;
-use Core\Http\Request;
-use Core\Http\Response;
+use Core\Http\Router;
 
-$router->add('GET', '/', function (Request $request) {
-    $controller = new HomeController($request, new Response());
-    return $controller->index();
-});
+Router::get('/', 'HomeController@index');
+Router::get('/about', 'HomeController@about');
+Router::post('/contact', 'ContactController@submit');

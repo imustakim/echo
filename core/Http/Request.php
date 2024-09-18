@@ -22,4 +22,35 @@ class Request extends SymfonyRequest {
             file_get_contents('php://input')
         );
     }
+
+    /**
+     * Retrieve input data from the request body.
+     * Automatically decodes JSON if content type is application/json.
+     *
+     * @param string|null $key
+     * @param mixed $default
+     * @return mixed
+     */
+    public function input(string $key = null, $default = null) {
+        if ($this->isJson()) {
+            $data = json_decode($this->getContent(), true);
+        } else {
+            $data = array_merge($this->request->all(), $this->query->all()); // Merges GET and POST data
+        }
+
+        if ($key) {
+            return $data[$key] ?? $default;
+        }
+
+        return $data;
+    }
+
+    /**
+     * Check if the request is of type JSON.
+     *
+     * @return bool
+     */
+    public function isJson(): bool {
+        return str_contains($this->headers->get('Content-Type'), 'application/json');
+    }
 }
