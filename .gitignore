@@ -1,2 +1,3 @@
-/vendor/
+/logs
+/vendor
 /node_modules

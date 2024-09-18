@@ -4,10 +4,10 @@ module.exports = {
         "./src/js/**/*.js",
     ],
 
-    // enable dark mode via class strategy
+    // Enable dark mode via class strategy
     darkMode: 'class',
     theme: {
         extend: {},
     },
     plugins: []
-}
+};

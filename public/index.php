@@ -4,7 +4,7 @@ use Core\Http\Request;
 use Core\Http\Response;
 use Core\Http\Router;
 use Core\Error\ErrorHandler;
-use Core\Database\Database;
+use Core\Database\Connection;
 
 // Load composer autoloader
 require "../vendor/autoload.php";
@@ -17,7 +17,7 @@ $dotenv->load();
 ErrorHandler::init();
 
 // Set up the database connection
-Database::init();
+Connection::init(); // Initializes Capsule and sets it as global
 
 // Create Router instance
 $router = new Router();
