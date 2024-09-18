@@ -2,9 +2,9 @@
     "name": "echo",
     "version": "1.0.0",
     "scripts": {
-        "build:css": "tailwindcss -i ./src/css/input.css -o ./public/assets/css/style.css --minify",
-        "watch:css": "tailwindcss -i ./src/css/input.css -o ./public/assets/css/style.css --watch",
-        "build:js": "webpack --config webpack.config.js",
+        "build:css": "tailwindcss -i ./src/css/input.css -o ./../public/assets/css/style.css --minify",
+        "watch:css": "tailwindcss -i ./src/css/input.css -o ./../public/assets/css/style.css --watch",
+        "build:js": "webpack --config ./config/webpack.config.js",
         "build": "npm run build:css && npm run build:js",
         "watch": "npm run watch:css && npm run build:js"
     },
