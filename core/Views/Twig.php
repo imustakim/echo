@@ -16,7 +16,7 @@ class Twig {
             $loader = new FilesystemLoader(__DIR__ . '/../../app/Views');
             self::$twig = new Environment($loader, [
                 'cache' => __DIR__ . '/../../cache/twig',
-                'debug' => true, // Set to false in production
+                'debug' => false, // Set to false in production
             ]);
         }
     }
