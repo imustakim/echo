@@ -9,13 +9,13 @@ use Core\Views\View;
 class HomeController {
 
     /**
-     * Handle the homepage request and render the view.
+     * Render the twig template.
      *
-     * @param Request $request
-     * @return Response
+     * @param Request $request The HTTP request.
+     * @return Response The rendered view as a response.
      */
     public function index(Request $request): Response {
-        // Render the 'home' view inside the 'layouts/main' layout
-        return View::render('home', ['title' => 'Home']);
+        $content = View::render('home', ['title' => 'Home']);
+        return new Response($content);
     }
 }
