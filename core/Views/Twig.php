@@ -17,6 +17,7 @@ class Twig {
             self::$twig = new Environment($loader, [
                 'cache' => __DIR__ . '/../../cache/twig',
                 'debug' => false, // Set to false in production
+                'auto_reload' => true
             ]);
         }
     }
