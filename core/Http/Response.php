@@ -29,17 +29,4 @@ class Response extends SymfonyResponse {
         $headers = array_merge($headers, ['Content-Type' => 'application/json']);
         return new static(json_encode($data), $status, $headers);
     }
-
-    /**
-     * Add cache headers to the response.
-     *
-     * @param int $minutes
-     * @return $this
-     */
-    public function withCache(int $minutes): self {
-        $this->headers->addCacheControlDirective('public', true);
-        $this->headers->addCacheControlDirective('max-age', $minutes * 60);
-        $this->headers->set('Expires', gmdate('D, d M Y H:i:s', time() + ($minutes * 60)) . ' GMT');
-        return $this;
-    }
 }

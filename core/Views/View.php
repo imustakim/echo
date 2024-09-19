@@ -9,36 +9,44 @@ use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
 
 class View {
-    /**
-     * Render a view using Twig.
-     *
-     * @param string $template The name of the Twig template file (without the .twig extension).
-     * @param array $data Data to be passed to the view.
-     * @param string|null $layout Optional layout template to wrap the view content.
-     * @return Response
-     * @throws LoaderError
-     * @throws RuntimeError
-     * @throws SyntaxError
-     */
-    public static function render(string $template, array $data = [], ?string $layout = 'layouts/main'): Response {
-        $twig = Twig::getTwig(); // Get the Twig environment
 
-        // Render the view's content
+    /**
+     * Renders a view template and returns the rendered HTML.
+     *
+     * @param string $template The name of the template file to render, without the extension.
+     * @param array $data An array of data to pass to the template.
+     * @param string $layout The name of the layout template to use, or null to not use a layout.
+     * @return string  The rendered HTML.
+     */
+    public static function render(string $template, array $data = [], ?string $layout = 'layouts/main'): string {
+        $twig = Twig::getTwig(); // Get the Twig environment
+        $content = '';
+
+        // Attempt to render the view's content
         try {
             $content = $twig->render($template . '.twig', $data);
         } catch (LoaderError | RuntimeError | SyntaxError $e) {
-            // Handle potential rendering errors and log if necessary
-            return new Response("Error rendering template: " . $e->getMessage(), 500);
+            return self::handleRenderingError("Error rendering template: " . $e->getMessage());
         }
 
-        // If a layout is provided, render the layout and inject the content
+        // Render the layout if provided
         if ($layout) {
             try {
                 $content = $twig->render($layout . '.twig', array_merge($data, ['content' => $content]));
             } catch (LoaderError | RuntimeError | SyntaxError $e) {
-                return new Response("Error rendering layout: " . $e->getMessage(), 500);
+                return self::handleRenderingError("Error rendering layout: " . $e->getMessage());
             }
         }
-        return new Response($content);
+        return $content;
+    }
+
+    /**
+     * Handle rendering errors.
+     *
+     * @param string $message
+     * @return Response
+     */
+    private static function handleRenderingError(string $message): Response {
+        return new Response($message, 500);
     }
 }

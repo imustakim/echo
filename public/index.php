@@ -31,7 +31,18 @@ $router = new Router();
 // Define routes
 require_once __DIR__ . '/../app/routes.php';
 
-// Dispatch the request
-$request = Request::createFromGlobals();
-$response = $router->dispatch($request);
-$response->send();
+try {
+    // Dispatch the request
+    $request = Request::createFromGlobals();
+
+    // Uncomment the following line to log the request data
+    // ErrorHandler::logRequest($request);
+
+    $response = $router->dispatch($request);
+    $response->prepare($request);
+
+    $response->send();
+} catch (\Throwable $e) {
+    // Catch any unhandled exceptions
+    ErrorHandler::handleException($e);
+}
