@@ -3,22 +3,42 @@
 namespace Core\Views;
 
 use Core\Http\Response;
+use Core\Views\Twig;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Error\SyntaxError;
 
 class View {
-    public static function render(string $view, array $data = [], string $layout = 'layouts/main'): Response {
-        // Extract data to variables
-        extract($data);
+    /**
+     * Render a view using Twig.
+     *
+     * @param string $template The name of the Twig template file (without the .twig extension).
+     * @param array $data Data to be passed to the view.
+     * @param string|null $layout Optional layout template to wrap the view content.
+     * @return Response
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
+    public static function render(string $template, array $data = [], ?string $layout = 'layouts/main'): Response {
+        $twig = Twig::getTwig(); // Get the Twig environment
 
-        // Capture the content of the view
-        ob_start();
-        include __DIR__.'/../../app/Views/'.$view.'.php';
-        $content = ob_get_clean();
+        // Render the view's content
+        try {
+            $content = $twig->render($template . '.twig', $data);
+        } catch (LoaderError | RuntimeError | SyntaxError $e) {
+            // Handle potential rendering errors and log if necessary
+            return new Response("Error rendering template: " . $e->getMessage(), 500);
+        }
 
-        // Render the layout with the view content
-        ob_start();
-        include __DIR__.'/../../app/Views/'.$layout.'.php';
-        $output = ob_get_clean();
-
-        return new Response($output);
+        // If a layout is provided, render the layout and inject the content
+        if ($layout) {
+            try {
+                $content = $twig->render($layout . '.twig', array_merge($data, ['content' => $content]));
+            } catch (LoaderError | RuntimeError | SyntaxError $e) {
+                return new Response("Error rendering layout: " . $e->getMessage(), 500);
+            }
+        }
+        return new Response($content);
     }
 }
