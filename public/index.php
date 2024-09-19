@@ -4,14 +4,17 @@ use Core\Http\Request;
 use Core\Http\Router;
 use Core\Error\ErrorHandler;
 use Core\Database\Connection;
+use Core\Session\Session;
 use Core\Views\Twig;
-
 // Load composer autoloader
 require_once __DIR__ . '/../vendor/autoload.php';
 
 // Load environment variables
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
 $dotenv->load();
+
+// Start the session
+Session::start();
 
 // Initialize error handling
 ErrorHandler::init();
